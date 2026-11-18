@@ -1,0 +1,38 @@
+// out:false
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    // -webkit-font-smoothing: antialiased; 是 WebKit/Blink 内核浏览器（如 Safari、旧版 Chrome）的私有 CSS 属性，
+    //用来控制字体抗锯齿的渲染方式。 简单说：它会让 macOS 上的文字渲染得更细、更平滑，而不是默认那种偏粗、带彩色边缘的渲染。
+    -webkit-font-smoothing: antialiased;
+    -webkit-tap-highlight-color: rgba(0,0,0,0);
+  }
+  
+  body {
+    font-family: Helvetica Neue,Tahoma,Arial,PingFangSC-Regular,Hiragino Sans GB,Microsoft Yahei,sans-serif;
+  }
+  
+  a {
+    color: #333;
+    text-decoration: none;
+  }
+  
+  img {
+    vertical-align: middle;
+    width: 100%;
+    height: 100%;
+  }
+  
+  ul {
+    list-style: none;
+  }
+  
+  .ellipsis-2 {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+  }

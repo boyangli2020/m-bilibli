@@ -1,0 +1,182 @@
+// 导入base.less
+// index.less 里写 @import "base.less";，Less 会把 base.less 的内容合并进 index.less，
+// 然后一起编译成 index.css。base.less 本身不会自动变成 base.css
+@import url(base.less);
+
+// 声明基准值变量，设计稿375px，vmin为37.5
+@baseSize: 3.75vmin;
+
+// 头部区域
+.suspension {
+    position: fixed;
+    top: 0;
+    left: 0;
+    // 固定定位盒子必须给宽度
+    width: 100%;
+    z-index: 1;
+    background-color: #fff;
+    box-shadow: 0 0.53333vmin 2.66667vmin rgb(0, 0, 0, .2);
+
+    .m-navbar {
+        display: flex;
+        height: (44 / @baseSize);
+        justify-content: space-between;
+        align-items: center;
+        padding: 0 (12 / @baseSize) 0 (18 / @baseSize);
+        .logo {
+            i {
+                // font-size给i加，不要给a加，默认iconfont的
+                // 字体大小是10px，给i加权重高一点，可以层叠掉
+                font-size: (28 / @baseSize);
+                color: #fb7299;
+            }
+        }
+        .right {
+            display: flex;
+            .search {
+                color: #ccc;
+                i {
+                    // font-size给i加，不要给a加，默认iconfont的
+                    // 字体大小是10px，给i加权重高一点，可以层叠掉
+                    font-size: (22 / @baseSize);
+                }
+            }
+            .face {
+                overflow: hidden;
+                // 给盒子宽高，图片100%就可以了，图片的样式在base.less中
+                width: (24 / @baseSize);
+                height: (24 / @baseSize);
+                border-radius: 50%;
+                margin: 0 (20 / @baseSize);
+            }
+            .app-btn {
+                width: (72 / @baseSize);
+                height: (24 / @baseSize);
+            }
+        }
+        
+    }
+
+    // 频道
+    .channel-menu {
+        position: relative;
+        display: flex;
+        justify-content: space-between;
+        // 因为垂直居中，所以.tabs的高度没有自动填充到剩余空间的高度
+        align-items: center;
+        height: (40 / @baseSize);
+        border-bottom: 1px solid #e7e7e7;
+
+        .tabs {
+            flex: 1;
+            overflow: hidden;
+            .tabs-list {
+                display: flex;
+                a {
+                    padding: 0 (16 / @baseSize);
+                    // 因为父亲display:flex，默认一行显示，当a太多就会越来越挤
+                    // 最后把a中的文字挤的竖着显示了，这里强制文字一行显示
+                    // 因为padding值是有的，文字不让换行，所以即使display: flex
+                    // 也没法互相挤得更紧凑，tabs-lists盒子的宽度就还是要
+                    // 随着内容的变多而越来越宽，只不过tabs有个overflow: hidden
+                    // 所以溢出的部分看不见了
+                    white-space: nowrap;
+                    font-size: (14 / @baseSize);
+                    height: (40 / @baseSize);
+                    line-height: (40 / @baseSize);
+                }
+                .line {
+                    position: absolute;
+                    left: (16 / @baseSize);
+                    bottom: 0;
+                    width: (28 / @baseSize);
+                    height: (2 / @baseSize);
+                    background-color: #fb7299;
+                }
+            }
+        }
+
+        .after {
+            // 添加定位，让盒子比流式布局的内容更高，飞起来，盖住其他的
+            // position: relative;
+            width: (40 / @baseSize);
+            height: (39 / @baseSize);
+            text-align: center;
+            line-height: (39 / @baseSize);
+            background-color: #fff;
+            color: #ccc;
+            i {
+                font-size: (20 / @baseSize);
+            }
+        }
+    }
+}
+
+// 主体部分
+.m-home {
+    padding: (85 / @baseSize) (5 / @baseSize) 0;
+    .video-list {
+        display: flex;
+        flex-wrap: wrap;
+        .video-item {
+            // 这里不可以flex:1，因为flex:1是父元素的剩余宽度平均分配，
+            // vidio-item非常多，副盒子宽度有限，平均分配肯定不行，所以
+            // 就要手动的给每一个video-item设置宽度
+            width: 50%;
+            padding: (8 / @baseSize) (5 / @baseSize);
+
+            .card {
+                position: relative; 
+                height: (97 / @baseSize);
+                .count {
+                    position: absolute;
+                    left: 0;
+                    bottom: 0;
+                    // 绝对定位的盒子，如果没有设置宽高的情况下，
+                    // 盒子的大小取决于里面内容的大小自动撑开
+                    // 所以这里最好要设置一个宽度
+                    width: 100%;
+                    height: (27 / @baseSize);
+                    padding: 0 (5 / @baseSize);
+                    display: flex;
+                    justify-content: space-between;
+                    align-items: center;
+                    font-size: (12 / @baseSize);
+                    color: #fff;
+                    background-image: linear-gradient(transparent, rgba(0, 0, 0, .5));
+                }
+            }
+
+            .title {
+                margin-top: (5 / @baseSize);
+                font-size: (12 / @baseSize);
+            }
+        }
+    }
+}
+
+// 底部模块
+.app {
+    position: fixed;
+    left: 0;
+    bottom: (30 / @baseSize);
+    width: 100%;
+    height: (38 / @baseSize);
+
+    .btn-app {
+        margin: 0 (20 / @baseSize);
+        height: (38 / @baseSize);
+        line-height: (38 / @baseSize);;
+        border-radius: (19 / @baseSize);
+        text-align: center;
+        background-color: #fb7299;
+        color: #fff;
+        box-shadow: 0 0.53333vmin 2.66667vmin rgb(0, 0, 0, .2);
+        font-size: (14 / @baseSize);
+
+        i {
+            margin-right: (5 / @baseSize);
+            font-size: (16 / @baseSize);
+        }
+    }
+}
